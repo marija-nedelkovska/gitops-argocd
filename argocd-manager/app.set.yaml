@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-set
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            namespace: dev
+            path: manifests/overlays/dev
+          - env: prd
+            namespace: prd
+            path: manifests/overlays/prd
+  template:
+    metadata:
+      name: '{{env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/marija-nedelkovska/gitops-workflow.git
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

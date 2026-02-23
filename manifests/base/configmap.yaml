@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-env
+data:
+  READINESS_DELAY_SEC: "10"
+  FAIL_RATE: "0.02"
