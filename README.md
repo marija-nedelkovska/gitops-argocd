@@ -25,7 +25,7 @@ kubectl get nodes
 ```
 
 
-* Build the application image (run this in the `app/` directory)
+* Build the application image
 
 ```shell
 docker build -t app:latest .
