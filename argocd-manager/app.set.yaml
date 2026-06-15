@@ -19,7 +19,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/marija-nedelkovska/gitops-workflow.git
+        repoURL: https://github.com/marija-nedelkovska/gitops-argocd.git
         targetRevision: main
         path: '{{path}}'
       destination:
